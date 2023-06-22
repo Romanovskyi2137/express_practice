@@ -46,12 +46,13 @@ class PostController {
     };
     async delete (req, res) {
         try{
-            if(!id) {
-                res.status(400).json({message: "id is not defiened"})
+            if(!req.params.id) {
+                res.status(400).json({message: "id is not defined"})
             };
             const post = await PostService.delete(req.params.id);
             return res.json(post)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
